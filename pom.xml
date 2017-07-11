@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>com.inditex</groupId>
+        <artifactId>itx-xsd2java-parent</artifactId>
+        <version>1.0.0</version>
+    </parent>
+    
+    <groupId>com.inditex.xsd.ofda</groupId>
+    <artifactId>RFIDComercialXSD</artifactId>
+    <version>1.0.0</version>
+    
+    <dependencies>
+		<dependency>
+			<groupId>com.inditex.xsd.ofda</groupId>
+			<artifactId>tiposEntidadesPTR</artifactId>
+			<version>1.0.0</version>
+			<classifier>xsd</classifier>
+		</dependency>
+	</dependencies>
+    
+    <properties>
+        <itx-xsd2java.xsd>com/inditex/xsd/RFIDComercialXSD_v1_0_0.xsd</itx-xsd2java.xsd>
+    </properties>
+    
+        <build>
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<artifactId>maven-resources-plugin</artifactId>
+					<version>3.0.2</version>
+					<executions>
+						<execution>
+							<id>copy-resources-xsd</id>
+							<!-- here the phase you need -->
+							<phase>validate</phase>
+							<goals>
+								<goal>copy-resources</goal>
+							</goals>
+							<configuration>
+								<outputDirectory>src/main/resources/com/inditex/xsd</outputDirectory>
+								<resources>
+									<resource>										
+										<directory>target/com/inditex/xsd</directory>	
+									</resource>
+								</resources>
+							</configuration>
+						</execution>
+					</executions>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+	</build>	
+	
+</project>

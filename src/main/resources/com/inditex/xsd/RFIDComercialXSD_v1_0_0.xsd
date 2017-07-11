@@ -1,0 +1,450 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://www.inditex.com/xsd/RFIDComercialXSD_v1"
+            targetNamespace="http://www.inditex.com/xsd/RFIDComercialXSD_v1" elementFormDefault="qualified"
+            xmlns:ptr="http://www.inditex.com/xsd/tiposEntidadesPTR_v1">
+   <!--       xmlns:jxb="http://java.sun.com/xml/ns/jaxb http://www.oracle.com/webfolder/technetwork/jsc/xml/ns/jaxb/bindingschema_2_0.xsd">  -->  
+            
+      
+    <xsd:import schemaLocation="tiposEntidadesPTR_v1_0_0.xsd"
+		namespace="http://www.inditex.com/xsd/tiposEntidadesPTR_v1"></xsd:import>
+            
+	<xsd:annotation>
+		<xsd:documentation>Definición de la Entidad de Negocio: RFIDComercialXSD
+
+V1.0.0 - 06/06/2017
+Version Inicial
+		</xsd:documentation>
+	</xsd:annotation>
+	
+    
+
+	<xsd:element
+		name="getListaLocalizacionesMCCBloqueoRFIDFechaRequest" type="basicRFIDInputType">
+	</xsd:element>
+
+	<xsd:complexType name="CampaignListType">
+		<xsd:sequence>
+			<xsd:element name="campaign" type="ptr:CampaignType" maxOccurs="2" minOccurs="1"></xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:complexType name="locationListType">
+		<xsd:sequence>
+			<xsd:element name="location" type="ptr:LocationType" maxOccurs="unbounded" minOccurs="1"></xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:complexType name="dateListType">
+		<xsd:sequence>
+			<xsd:element name="date" type="ptr:dateString" maxOccurs="unbounded" minOccurs="1">
+				<xsd:annotation>
+					<xsd:documentation>La fecha tiene que ser inferior a la fecha actual.</xsd:documentation>
+				</xsd:annotation></xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:complexType name="colourArticleListType">
+		<xsd:sequence>
+			<xsd:element name="colourArticle" type="ptr:MCCType" maxOccurs="unbounded" minOccurs="1"></xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	
+	<xsd:complexType name="sizeArticleListType">
+		<xsd:sequence>
+			<xsd:element name="sizeArticle" type="ptr:MCCTType" maxOccurs="unbounded" minOccurs="1"></xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:complexType name="seasonListType">
+		<xsd:sequence>
+			<xsd:element name="season" type="ptr:SeasonType" maxOccurs="2" minOccurs="1"></xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:element
+		name="getListaLocalizacionesMCCBloqueoRFIDFechaResponse">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="colourArticleLocations" type="colourArticleLocationsType" maxOccurs="unbounded" minOccurs="1"></xsd:element>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+
+    <xsd:complexType name="basicRFIDInputType">
+   			<xsd:sequence>
+				<xsd:element name="brand" type="ptr:BrandType"
+					maxOccurs="1" minOccurs="0">
+				</xsd:element>
+				<xsd:element name="product" type="ptr:ProductType"
+					maxOccurs="1" minOccurs="0">
+				</xsd:element>
+
+                <xsd:element name="campaignList" type="CampaignListType"
+					maxOccurs="1" minOccurs="1">
+				</xsd:element>
+                <xsd:element name="section" type="ptr:SectionType" maxOccurs="1" minOccurs="0"></xsd:element>
+                <xsd:element name="seasonList" type="seasonListType"
+					maxOccurs="1" minOccurs="1">
+				</xsd:element>
+				<xsd:element name="locationList" type="locationListType"
+					maxOccurs="1" minOccurs="1">
+				</xsd:element>
+				<xsd:element name="dateList" type="dateListType"
+					maxOccurs="1" minOccurs="1">
+				</xsd:element>
+				<xsd:element name="colourArticleList"
+					type="colourArticleListType" maxOccurs="1" minOccurs="1">
+				</xsd:element>
+			</xsd:sequence> 
+    </xsd:complexType>
+
+    <xsd:element name="getListaLocalizacionesMCCExpuestoFechaRequest">
+    	<xsd:complexType>
+    		<xsd:sequence>
+    			<xsd:element name="basicRFIDInput" type="basicRFIDInputType"
+    				maxOccurs="1" minOccurs="1">
+    			</xsd:element>
+    			<xsd:element name="sizeThreshold" type="sizeThresholdType" maxOccurs="1" minOccurs="0"></xsd:element>
+    		</xsd:sequence>
+    	</xsd:complexType>
+    </xsd:element>
+
+    <xsd:element
+    	name="getListaLocalizacionesMCCExpuestoFechaResponse">
+    	<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="colourArticleExpositionDetails" type="colourArticleExpositionDetailsType" maxOccurs="unbounded" minOccurs="1"></xsd:element>
+			</xsd:sequence>
+    	</xsd:complexType>
+    </xsd:element>
+
+    <xsd:complexType name="colourArticleExpositionDetailsType">
+    	<xsd:sequence>
+            <xsd:element name="colourArticle" type="ptr:MCCType" maxOccurs="1" minOccurs="1">
+			</xsd:element>
+            <xsd:element name="campaign" type="ptr:CampaignType" maxOccurs="1" minOccurs="1"></xsd:element>
+            <xsd:element name="date" type="ptr:dateString"
+				maxOccurs="1" minOccurs="1">
+			</xsd:element>
+            <xsd:element name="isExposed" type="isExposedType" maxOccurs="1" minOccurs="0">
+				</xsd:element>
+            <xsd:element name="locationList" type="locationListType" maxOccurs="1" minOccurs="1">
+			</xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="colourArticleLocationsType">
+  			<xsd:sequence>
+            <xsd:element name="colourArticle" type="ptr:MCCType" maxOccurs="1" minOccurs="1">
+				</xsd:element>
+            <xsd:element name="campaign" type="ptr:CampaignType" maxOccurs="1" minOccurs="1"></xsd:element>
+				<xsd:element name="date" type="ptr:dateString"
+					maxOccurs="1" minOccurs="1">
+				</xsd:element>
+				<xsd:element name="locationList" type="locationListType"
+					maxOccurs="1" minOccurs="1">
+				</xsd:element>
+			</xsd:sequence>  
+    </xsd:complexType>
+    
+    <xsd:complexType name="locationDetailsType">
+  			<xsd:sequence>
+            <xsd:element name="campaign" type="ptr:CampaignType" maxOccurs="1" minOccurs="1"></xsd:element>
+            <xsd:element name="date" type="ptr:dateString"
+					maxOccurs="1" minOccurs="1">
+				</xsd:element>
+				<xsd:element name="colourArticleList" type="colourArticleListType"
+					maxOccurs="1" minOccurs="1">
+				</xsd:element>
+				<xsd:element name="location" type="ptr:LocationType"
+					maxOccurs="1" minOccurs="1">
+				</xsd:element>
+			</xsd:sequence>  
+    </xsd:complexType>
+
+    <xsd:element name="getListaMCCExpuestoLocalizacionFechaRequest">
+    	<xsd:complexType>
+    		<xsd:sequence>
+    			<xsd:element name="basicRFIDInput" type="basicRFIDInputType"
+    				maxOccurs="1" minOccurs="1">
+    			</xsd:element>
+    			<xsd:element name="sizeThreshold" type="sizeThresholdType" maxOccurs="1" minOccurs="0"></xsd:element>
+    		</xsd:sequence>    	
+    	</xsd:complexType>
+    </xsd:element>
+
+    <xsd:element name="getListaMCCExpuestoLocalizacionFechaResponse">
+    	<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="locationExpositionDetails" type="locationExpositionDetailsType" maxOccurs="unbounded" minOccurs="1"></xsd:element>
+			</xsd:sequence>    	
+    	</xsd:complexType>
+    </xsd:element>
+
+    <xsd:element
+    	name="getListaLocalizacionesMCCStockExpoActivoFechaRequest"
+    	type="basicRFIDInputType">
+    </xsd:element>
+
+    <xsd:element
+    	name="getListaLocalizacionesMCCStockExpoActivoFechaResponse">
+    	<xsd:complexType>
+    		<xsd:sequence>
+    			<xsd:element name="colourArticleStatusDetails" type="colourArticleStatusDetailsType" maxOccurs="unbounded" minOccurs="1"></xsd:element>
+    		</xsd:sequence>
+    	</xsd:complexType>
+    </xsd:element>
+
+    <xsd:complexType name="colourArticleStatusDetailsType">
+    	<xsd:sequence>
+            <xsd:element name="location" type="ptr:LocationType" maxOccurs="1" minOccurs="0">
+			</xsd:element>
+            <xsd:element name="campaign" type="ptr:CampaignType" maxOccurs="1" minOccurs="1"></xsd:element>
+			<xsd:element name="date" type="ptr:dateString"
+				maxOccurs="1" minOccurs="1">
+			</xsd:element>
+            <xsd:element name="isActive" type="isActiveType" maxOccurs="1" minOccurs="0">
+				</xsd:element>
+            <xsd:element name="colourArticleList" type="colourArticleListType" maxOccurs="1" minOccurs="1">
+			</xsd:element>
+        </xsd:sequence>    
+    </xsd:complexType>
+ 
+     <xsd:complexType name="sizeArticleStatusDetailsType">
+    	<xsd:sequence>
+            <xsd:element name="location" type="ptr:LocationType" maxOccurs="1" minOccurs="0">
+			</xsd:element>
+            <xsd:element name="campaign" type="ptr:CampaignType" maxOccurs="1" minOccurs="1"></xsd:element>
+			<xsd:element name="date" type="ptr:dateString"
+				maxOccurs="1" minOccurs="1">
+			</xsd:element>
+            <xsd:element name="isActive" type="isActiveType" maxOccurs="1" minOccurs="0">
+				</xsd:element>
+            <xsd:element name="sizeArticleList" type="sizeArticleListType" maxOccurs="1" minOccurs="1">
+			</xsd:element>
+        </xsd:sequence>    
+    </xsd:complexType>   
+    
+
+    <xsd:complexType name="locationExpositionDetailsType">
+     	<xsd:sequence>
+            <xsd:element name="location" type="ptr:LocationType" maxOccurs="1" minOccurs="0">
+			</xsd:element>
+            <xsd:element name="campaign" type="ptr:CampaignType" maxOccurs="1" minOccurs="1"></xsd:element>
+            <xsd:element name="date" type="ptr:dateString"
+				maxOccurs="1" minOccurs="1">
+			</xsd:element>
+            <xsd:element name="isExposed" type="isExposedType" maxOccurs="1" minOccurs="0">
+				</xsd:element>
+            <xsd:element name="colourArticleList" type="colourArticleListType" maxOccurs="1" minOccurs="1">
+			</xsd:element>
+        </xsd:sequence>   
+    </xsd:complexType>
+
+    <xsd:element
+    	name="getListaLocalizacionesMCCTStockExpoActivoFechaRequest"
+    	type="basicRFIDInputType">
+    </xsd:element>
+
+    <xsd:element
+    	name="getListaLocalizacionesMCCTStockExpoActivoFechaResponse">
+    	<xsd:complexType>
+    		<xsd:sequence>
+    			<xsd:element name="sizeArticleStatusDetails" type="sizeArticleStatusDetailsType" maxOccurs="unbounded" minOccurs="1"></xsd:element>
+    		</xsd:sequence>
+    	</xsd:complexType>
+    </xsd:element>
+
+    <xsd:element name="getListaMCCActivosLocalizacionFechaRequest">
+    	<xsd:complexType>
+     		<xsd:sequence>
+    			<xsd:element name="basicRFIDInput" type="basicRFIDInputType"
+    				maxOccurs="1" minOccurs="1">
+    			</xsd:element>
+    			<xsd:element name="sizeThreshold" type="sizeThresholdType" maxOccurs="1" minOccurs="0"></xsd:element>
+    		</xsd:sequence>   	
+    	</xsd:complexType>
+    </xsd:element>
+
+
+    <xsd:element name="getListaMCCActivosLocalizacionFechaResponse">
+    	<xsd:complexType>
+    		<xsd:sequence>
+    			<xsd:element name="locationStatusDetails" type="locationStatusDetailsType" maxOccurs="unbounded" minOccurs="1"></xsd:element>
+    		</xsd:sequence>
+    	</xsd:complexType>
+    </xsd:element>
+
+    <xsd:complexType name="locationStatusDetailsType">
+       	<xsd:sequence>
+            <xsd:element name="colourArticle" type="ptr:MCCType" maxOccurs="1" minOccurs="1">
+			</xsd:element>
+            <xsd:element name="campaign" type="ptr:CampaignType" maxOccurs="1" minOccurs="1"></xsd:element>
+			<xsd:element name="date" type="ptr:dateString"
+				maxOccurs="1" minOccurs="1">
+			</xsd:element>
+            <xsd:element name="active" type="activeType" maxOccurs="1" minOccurs="0">
+				</xsd:element>
+            <xsd:element name="locationList" type="locationListType" maxOccurs="1" minOccurs="1">
+			</xsd:element>
+        </xsd:sequence>     
+    </xsd:complexType>
+
+    <xsd:element
+    	name="getStocksRFIDComercialLocalizacionMCCTFechaRequest"
+    	type="basicRFIDInputType">
+    </xsd:element>
+
+    <xsd:element
+    	name="getStocksRFIDComercialLocalizacionMCCTFechaResponse">
+    	<xsd:complexType>
+    		<xsd:sequence>
+    			<xsd:element name="locationArticleStockDetails"
+    				type="LocationArticleStockDetails" maxOccurs="unbounded" minOccurs="1">
+    			</xsd:element>
+    		</xsd:sequence>
+    	</xsd:complexType>
+    </xsd:element>
+
+    <xsd:complexType name="LocationArticleStockDetails">
+    	<xsd:sequence>
+    		<xsd:element name="stockDetails" type="stockDetailsType"
+    			maxOccurs="1" minOccurs="1">
+    		</xsd:element>
+    		<xsd:element name="article" type="ptr:MCCTType"
+    			maxOccurs="1" minOccurs="1">
+    		</xsd:element>
+    		<xsd:element name="location" type="ptr:LocationType" maxOccurs="1" minOccurs="0"></xsd:element>
+    	</xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="stockDetailsType">
+    	<xsd:sequence>
+    		<xsd:element name="campaign" type="ptr:CampaignType" maxOccurs="1" minOccurs="1"></xsd:element>
+    		<xsd:element name="date" type="ptr:dateString" maxOccurs="1" minOccurs="1"></xsd:element>
+    		<xsd:element name="rfidStock" type="xsd:int" maxOccurs="1" minOccurs="0"></xsd:element>
+    		<xsd:element name="admStock" type="xsd:int" maxOccurs="1" minOccurs="0"></xsd:element>
+    		<xsd:element name="consignStock" type="xsd:int" maxOccurs="1" minOccurs="0"></xsd:element>
+    		<xsd:element name="activeStock" type="xsd:int" maxOccurs="1" minOccurs="0"></xsd:element>
+    		<xsd:element name="passiveStock" type="xsd:int" maxOccurs="1" minOccurs="0"></xsd:element>
+    	</xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:element name="getStocksRFIDComercialLocalizacionFechaRequest"
+    	type="basicRFIDInputType">
+    </xsd:element>
+
+    <xsd:element
+    	name="getStocksRFIDComercialLocalizacionFechaResponse">
+    	<xsd:complexType>
+    		<xsd:sequence>
+    			<xsd:element name="locationStockDetails" type="locationStockDetailsType" maxOccurs="unbounded" minOccurs="1"></xsd:element>
+    		</xsd:sequence>
+    	</xsd:complexType>
+    </xsd:element>
+
+    <xsd:complexType name="locationStockDetailsType">
+     	<xsd:sequence>
+    		<xsd:element name="stockDetails" type="stockDetailsType"
+    			maxOccurs="1" minOccurs="1">
+    		</xsd:element>
+    		<xsd:element name="location" type="ptr:LocationType" maxOccurs="1" minOccurs="0"></xsd:element>
+    	</xsd:sequence>   
+    </xsd:complexType>
+
+    <xsd:element name="getStocksRFIDComercialMCCTFechaRequest"
+    	type="basicRFIDInputType">
+    </xsd:element>
+
+    <xsd:element name="getStocksRFIDComercialMCCTFechaResponse">
+    	<xsd:complexType>
+    		<xsd:sequence>
+    			<xsd:element name="articleStockDetails" type="articleStockDetailsType" maxOccurs="unbounded" minOccurs="1"></xsd:element>
+    		</xsd:sequence>
+    	</xsd:complexType>
+    </xsd:element>
+
+    <xsd:complexType name="articleStockDetailsType">
+      	<xsd:sequence>
+    		<xsd:element name="stockDetails" type="stockDetailsType"
+    			maxOccurs="1" minOccurs="1">
+    		</xsd:element>
+    		<xsd:element name="article" type="ptr:MCCTType"
+    			maxOccurs="1" minOccurs="1">
+    		</xsd:element>
+    	</xsd:sequence>  
+    </xsd:complexType>
+
+    <xsd:element
+    	name="getLocalizacionesConStockRFIDComercialFechaMCCRequest">
+    	<xsd:complexType>
+    		<xsd:sequence>
+    			<xsd:element name="basicRFIDInput" type="basicRFIDInputType"
+    				maxOccurs="1" minOccurs="1">
+    			</xsd:element>
+    			<xsd:element name="sizeThreshold" type="sizeThresholdType" maxOccurs="1" minOccurs="0"></xsd:element>
+    		</xsd:sequence>    	
+    	</xsd:complexType>
+    </xsd:element>
+
+    <xsd:element
+    	name="getLocalizacionesConStockRFIDComercialFechaMCCResponse">
+    	<xsd:complexType>
+    		<xsd:sequence>
+    			<xsd:element name="activeMCC"
+    				type="activeMCCType" maxOccurs="unbounded" minOccurs="1">
+    			</xsd:element>
+    		</xsd:sequence>
+    	</xsd:complexType>
+    </xsd:element>
+
+    <xsd:complexType name="getLocalizacionesConStockRFIDComercialFechaMCCType"></xsd:complexType>
+
+    <xsd:complexType name="activeMCCType">
+   			<xsd:sequence>
+   				<xsd:element name="campaign" type="ptr:CampaignType"
+   					maxOccurs="1" minOccurs="1">
+   				</xsd:element>
+   				<xsd:element name="date" type="ptr:dateString"
+   					maxOccurs="1" minOccurs="1">
+   				</xsd:element>
+   				<xsd:element name="colourArticle" type="ptr:MCCType"
+   					maxOccurs="1" minOccurs="1">
+   				</xsd:element>			<xsd:element name="locationList"
+   					type="locationListType" maxOccurs="1" minOccurs="1">
+   				</xsd:element>
+   				<xsd:element name="aboveThreshold" type="aboveThresholdType" maxOccurs="1" minOccurs="0">
+<!--  			          <xsd:annotation>
+	             <xsd:appinfo>
+	                <jxb:property>
+	                   <jxb:javadoc>
+	                      &lt;p&gt;Documentation goes here.&lt;/p&gt;
+	                   </jxb:javadoc>
+	                </jxb:property>
+	             </xsd:appinfo>
+	          </xsd:annotation>			-->	
+   				</xsd:element>
+   			</xsd:sequence>
+
+    </xsd:complexType>
+
+    <xsd:simpleType name="aboveThresholdType">   
+    	<xsd:restriction base="xsd:int"></xsd:restriction>
+    </xsd:simpleType>
+
+    <xsd:simpleType name="sizeThresholdType">
+    	<xsd:restriction base="xsd:int"></xsd:restriction>
+    </xsd:simpleType>
+
+    <xsd:simpleType name="isExposedType">
+    	<xsd:restriction base="xsd:boolean"></xsd:restriction>
+    </xsd:simpleType>
+
+    <xsd:simpleType name="isActiveType">
+    	<xsd:restriction base="xsd:boolean"></xsd:restriction>
+    </xsd:simpleType>
+
+    <xsd:simpleType name="activeType">
+    	<xsd:restriction base="xsd:int"></xsd:restriction>
+    </xsd:simpleType>
+</xsd:schema>

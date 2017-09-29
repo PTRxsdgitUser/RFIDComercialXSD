@@ -13,13 +13,16 @@
 
 V1.0.0 - 06/06/2017
 Version Inicial
+
+V1.0.1 - 29/09/2017
+Añadido el objeto RangoFechaType
 		</xsd:documentation>
 	</xsd:annotation>
 	
     
 
 	<xsd:element
-		name="getListaLocalizacionesMCCBloqueoRFIDFechaRequest" type="basicRFIDInputType">
+		name="getListaLocalizacionesMCCBloqueoRFIDFechaRequest" type="basicRFIDInputType">
 	</xsd:element>
 
 	<xsd:complexType name="CampaignListType">
@@ -33,15 +36,22 @@ Version Inicial
 			<xsd:element name="location" type="ptr:LocationType" maxOccurs="unbounded" minOccurs="1"></xsd:element>
 		</xsd:sequence>
 	</xsd:complexType>
-
-	<xsd:complexType name="dateListType">
+    
+	<xsd:complexType name="listaRangosFechas">
 		<xsd:sequence>
-			<xsd:element name="date" type="ptr:dateString" maxOccurs="unbounded" minOccurs="1">
+			<xsd:element name="rangoFecha" type="rangoFecha_type" maxOccurs="unbounded" minOccurs="1">
 				<xsd:annotation>
 					<xsd:documentation>La fecha tiene que ser inferior a la fecha actual.</xsd:documentation>
 				</xsd:annotation></xsd:element>
 		</xsd:sequence>
 	</xsd:complexType>
+	
+	<xsd:complexType name="rangoFecha_type">
+    	<xsd:sequence>
+    		<xsd:element name="fechaDesde" type="ptr:dateString"/>
+    		<xsd:element name="fechaHasta" type="ptr:dateString"/>
+    	</xsd:sequence>
+    </xsd:complexType>
 
 	<xsd:complexType name="colourArticleListType">
 		<xsd:sequence>
@@ -73,24 +83,24 @@ Version Inicial
     <xsd:complexType name="basicRFIDInputType">
    			<xsd:sequence>
 				<xsd:element name="brand" type="ptr:BrandType"
-					maxOccurs="1" minOccurs="0">
+					maxOccurs="1" minOccurs="1">
 				</xsd:element>
 				<xsd:element name="product" type="ptr:ProductType"
-					maxOccurs="1" minOccurs="0">
+					maxOccurs="1" minOccurs="1">
 				</xsd:element>
 
                 <xsd:element name="campaignList" type="CampaignListType"
 					maxOccurs="1" minOccurs="1">
 				</xsd:element>
-                <xsd:element name="section" type="ptr:SectionType" maxOccurs="1" minOccurs="0"></xsd:element>
+                <xsd:element name="section" type="ptr:SectionType" maxOccurs="1" minOccurs="1"></xsd:element>
                 <xsd:element name="seasonList" type="seasonListType"
 					maxOccurs="1" minOccurs="1">
 				</xsd:element>
 				<xsd:element name="locationList" type="locationListType"
 					maxOccurs="1" minOccurs="1">
 				</xsd:element>
-				<xsd:element name="dateList" type="dateListType"
-					maxOccurs="1" minOccurs="1">
+				<xsd:element name="rangoFecha" type="rangoFecha_type"
+					maxOccurs="unbounded" minOccurs="1">
 				</xsd:element>
 				<xsd:element name="colourArticleList"
 					type="colourArticleListType" maxOccurs="1" minOccurs="1">
@@ -104,7 +114,7 @@ Version Inicial
     			<xsd:element name="basicRFIDInput" type="basicRFIDInputType"
     				maxOccurs="1" minOccurs="1">
     			</xsd:element>
-    			<xsd:element name="sizeThreshold" type="sizeThresholdType" maxOccurs="1" minOccurs="0"></xsd:element>
+    			<xsd:element name="sizeThreshold" type="sizeThresholdType" maxOccurs="1" minOccurs="1"></xsd:element>
     		</xsd:sequence>
     	</xsd:complexType>
     </xsd:element>
@@ -125,7 +135,7 @@ Version Inicial
             <xsd:element name="campaign" type="ptr:CampaignType" maxOccurs="1" minOccurs="1"></xsd:element>
             <xsd:element name="date" type="ptr:dateString"
 				maxOccurs="1" minOccurs="1">
-			</xsd:element>
+			</xsd:element>
             <xsd:element name="isExposed" type="isExposedType" maxOccurs="1" minOccurs="0">
 				</xsd:element>
             <xsd:element name="locationList" type="locationListType" maxOccurs="1" minOccurs="1">
@@ -140,7 +150,7 @@ Version Inicial
             <xsd:element name="campaign" type="ptr:CampaignType" maxOccurs="1" minOccurs="1"></xsd:element>
 				<xsd:element name="date" type="ptr:dateString"
 					maxOccurs="1" minOccurs="1">
-				</xsd:element>
+				</xsd:element>
 				<xsd:element name="locationList" type="locationListType"
 					maxOccurs="1" minOccurs="1">
 				</xsd:element>
@@ -168,7 +178,7 @@ Version Inicial
     			<xsd:element name="basicRFIDInput" type="basicRFIDInputType"
     				maxOccurs="1" minOccurs="1">
     			</xsd:element>
-    			<xsd:element name="sizeThreshold" type="sizeThresholdType" maxOccurs="1" minOccurs="0"></xsd:element>
+    			<xsd:element name="sizeThreshold" type="sizeThresholdType" maxOccurs="1" minOccurs="1"></xsd:element>
     		</xsd:sequence>    	
     	</xsd:complexType>
     </xsd:element>
@@ -233,7 +243,7 @@ Version Inicial
             <xsd:element name="campaign" type="ptr:CampaignType" maxOccurs="1" minOccurs="1"></xsd:element>
             <xsd:element name="date" type="ptr:dateString"
 				maxOccurs="1" minOccurs="1">
-			</xsd:element>
+			</xsd:element>
             <xsd:element name="isExposed" type="isExposedType" maxOccurs="1" minOccurs="0">
 				</xsd:element>
             <xsd:element name="colourArticleList" type="colourArticleListType" maxOccurs="1" minOccurs="1">
@@ -261,7 +271,7 @@ Version Inicial
     			<xsd:element name="basicRFIDInput" type="basicRFIDInputType"
     				maxOccurs="1" minOccurs="1">
     			</xsd:element>
-    			<xsd:element name="sizeThreshold" type="sizeThresholdType" maxOccurs="1" minOccurs="0"></xsd:element>
+    			<xsd:element name="sizeThreshold" type="sizeThresholdType" maxOccurs="1" minOccurs="1"></xsd:element>
     		</xsd:sequence>   	
     	</xsd:complexType>
     </xsd:element>
@@ -347,7 +357,7 @@ Version Inicial
      	<xsd:sequence>
     		<xsd:element name="stockDetails" type="stockDetailsType"
     			maxOccurs="1" minOccurs="1">
-    		</xsd:element>
+    		</xsd:element>
     		<xsd:element name="location" type="ptr:LocationType" maxOccurs="1" minOccurs="0"></xsd:element>
     	</xsd:sequence>   
     </xsd:complexType>
@@ -371,7 +381,7 @@ Version Inicial
     		</xsd:element>
     		<xsd:element name="article" type="ptr:MCCTType"
     			maxOccurs="1" minOccurs="1">
-    		</xsd:element>
+    		</xsd:element>
     	</xsd:sequence>  
     </xsd:complexType>
 
@@ -382,7 +392,7 @@ Version Inicial
     			<xsd:element name="basicRFIDInput" type="basicRFIDInputType"
     				maxOccurs="1" minOccurs="1">
     			</xsd:element>
-    			<xsd:element name="sizeThreshold" type="sizeThresholdType" maxOccurs="1" minOccurs="0"></xsd:element>
+    			<xsd:element name="sizeThreshold" type="sizeThresholdType" maxOccurs="1" minOccurs="1"></xsd:element>
     		</xsd:sequence>    	
     	</xsd:complexType>
     </xsd:element>

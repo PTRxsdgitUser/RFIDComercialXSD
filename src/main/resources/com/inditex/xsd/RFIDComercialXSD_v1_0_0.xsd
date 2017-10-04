@@ -16,6 +16,10 @@ Version Inicial
 
 V1.0.1 - 29/09/2017
 Añadido el objeto RangoFechaType
+
+V1.0.2 - 03/10/2017
+Añadidos los objetos Response que se devuelve en los Daos
+
 		</xsd:documentation>
 	</xsd:annotation>
 	
@@ -135,7 +139,7 @@ Añadido el objeto RangoFechaType
             <xsd:element name="campaign" type="ptr:CampaignType" maxOccurs="1" minOccurs="1"></xsd:element>
             <xsd:element name="date" type="ptr:dateString"
 				maxOccurs="1" minOccurs="1">
-			</xsd:element>
+			</xsd:element>
             <xsd:element name="isExposed" type="isExposedType" maxOccurs="1" minOccurs="0">
 				</xsd:element>
             <xsd:element name="locationList" type="locationListType" maxOccurs="1" minOccurs="1">
@@ -150,7 +154,7 @@ Añadido el objeto RangoFechaType
             <xsd:element name="campaign" type="ptr:CampaignType" maxOccurs="1" minOccurs="1"></xsd:element>
 				<xsd:element name="date" type="ptr:dateString"
 					maxOccurs="1" minOccurs="1">
-				</xsd:element>
+				</xsd:element>
 				<xsd:element name="locationList" type="locationListType"
 					maxOccurs="1" minOccurs="1">
 				</xsd:element>
@@ -243,7 +247,7 @@ Añadido el objeto RangoFechaType
             <xsd:element name="campaign" type="ptr:CampaignType" maxOccurs="1" minOccurs="1"></xsd:element>
             <xsd:element name="date" type="ptr:dateString"
 				maxOccurs="1" minOccurs="1">
-			</xsd:element>
+			</xsd:element>
             <xsd:element name="isExposed" type="isExposedType" maxOccurs="1" minOccurs="0">
 				</xsd:element>
             <xsd:element name="colourArticleList" type="colourArticleListType" maxOccurs="1" minOccurs="1">
@@ -357,7 +361,7 @@ Añadido el objeto RangoFechaType
      	<xsd:sequence>
     		<xsd:element name="stockDetails" type="stockDetailsType"
     			maxOccurs="1" minOccurs="1">
-    		</xsd:element>
+    		</xsd:element>
     		<xsd:element name="location" type="ptr:LocationType" maxOccurs="1" minOccurs="0"></xsd:element>
     	</xsd:sequence>   
     </xsd:complexType>
@@ -381,7 +385,7 @@ Añadido el objeto RangoFechaType
     		</xsd:element>
     		<xsd:element name="article" type="ptr:MCCTType"
     			maxOccurs="1" minOccurs="1">
-    		</xsd:element>
+    		</xsd:element>
     	</xsd:sequence>  
     </xsd:complexType>
 
@@ -457,4 +461,201 @@ Añadido el objeto RangoFechaType
     <xsd:simpleType name="activeType">
     	<xsd:restriction base="xsd:int"></xsd:restriction>
     </xsd:simpleType>
+   
+    <xsd:element name="sDDMccBloqueoResponse">
+    	<xsd:complexType>
+    		<xsd:sequence>
+    			<xsd:element name="campaign" type="ptr:CampaignType" maxOccurs="1" minOccurs="0"></xsd:element>
+    			<xsd:element name="date" type="ptr:dateString" maxOccurs="1" minOccurs="0"></xsd:element>
+    			<xsd:element name="colourArticle" type="ptr:MCCType" maxOccurs="1" minOccurs="0"></xsd:element>
+    			<xsd:element name="locationId" type="ptr:LocationType" maxOccurs="1" minOccurs="0"></xsd:element>
+    		</xsd:sequence>
+    	</xsd:complexType>
+    </xsd:element>
+    
+    <xsd:element name="sDDMccExpuestoResponse">
+    	<xsd:complexType>
+    		<xsd:sequence>
+    			<xsd:element name="campaign" type="ptr:CampaignType" maxOccurs="1" minOccurs="0"></xsd:element>
+    			<xsd:element name="date" type="ptr:dateString" maxOccurs="1" minOccurs="0"></xsd:element>
+    			<xsd:element name="colourArticle" type="ptr:MCCType" maxOccurs="1" minOccurs="0"></xsd:element>
+    			<xsd:element name="isExposed" type="isExposedType" maxOccurs="1" minOccurs="0"></xsd:element>
+    			<xsd:element name="locationId" type="ptr:LocationType" maxOccurs="1" minOccurs="0"></xsd:element>
+    		</xsd:sequence>
+    	</xsd:complexType>
+    </xsd:element>
+    
+    <xsd:element name="sDDMccStockExpoResponse">
+    	<xsd:complexType>
+    		<xsd:sequence>
+    			<xsd:element name="campaign" type="ptr:CampaignType" maxOccurs="1" minOccurs="0"></xsd:element>
+    			<xsd:element name="date" type="ptr:dateString" maxOccurs="1" minOccurs="0"></xsd:element>
+    			<xsd:element name="colourArticle" type="ptr:MCCType" maxOccurs="1" minOccurs="0"></xsd:element>
+    			<xsd:element name="isActive" type="isActiveType" maxOccurs="1" minOccurs="0"></xsd:element>
+    			<xsd:element name="locationId" type="ptr:LocationType" maxOccurs="1" minOccurs="0"></xsd:element>
+    		</xsd:sequence>
+    	</xsd:complexType>
+    </xsd:element>
+    
+   	<xsd:element name="sDDMcctStockExpoResponse">
+   		<xsd:complexType>
+   			<xsd:sequence>
+    			<xsd:element name="campaign" type="ptr:CampaignType" maxOccurs="1" minOccurs="0"></xsd:element>
+    			<xsd:element name="date" type="ptr:dateString" maxOccurs="1" minOccurs="0"></xsd:element>
+    			<xsd:element name="colourArticleSize" type="ptr:MCCTType" maxOccurs="1" minOccurs="0"></xsd:element>
+    			<xsd:element name="isActive" type="isActiveType" maxOccurs="1" minOccurs="0"></xsd:element>
+    			<xsd:element name="locationId" type="ptr:LocationType" maxOccurs="1" minOccurs="0"></xsd:element>
+    		</xsd:sequence>
+   		</xsd:complexType>
+   	</xsd:element>
+    
+   	<xsd:element name="sDDMccActivosResponse">
+   		<xsd:complexType>
+   			<xsd:sequence>
+    			<xsd:element name="campaign" type="ptr:CampaignType" maxOccurs="1" minOccurs="0"></xsd:element>
+    			<xsd:element name="date" type="ptr:dateString" maxOccurs="1" minOccurs="0"></xsd:element>
+    			<xsd:element name="colourArticle" type="ptr:MCCType" maxOccurs="1" minOccurs="0"></xsd:element>
+    			<xsd:element name="active" type="activeType" maxOccurs="1" minOccurs="0"></xsd:element>
+    			<xsd:element name="locationId" type="ptr:LocationType" maxOccurs="1" minOccurs="0"></xsd:element>
+    		</xsd:sequence>
+   		</xsd:complexType>
+   	</xsd:element>
+   	
+   	<xsd:element name="sDDMccExpuestoLocalizacionResponse">
+   		<xsd:complexType>
+   			<xsd:sequence>
+   				<xsd:element name="campaign" type="ptr:CampaignType" maxOccurs="1" minOccurs="0"></xsd:element>
+    			<xsd:element name="date" type="ptr:dateString" maxOccurs="1" minOccurs="0"></xsd:element>
+    			<xsd:element name="colourArticle" type="ptr:MCCType" maxOccurs="1" minOccurs="0"></xsd:element>
+    			<xsd:element name="isExposed" type="isExposedType" maxOccurs="1" minOccurs="0"></xsd:element>
+    			<xsd:element name="locationId" type="ptr:LocationType" maxOccurs="1" minOccurs="0"></xsd:element>
+   			</xsd:sequence>
+   		</xsd:complexType>
+   	</xsd:element>
+   	
+   	<xsd:element name="sDDStockRFIDResponse">
+   		<xsd:complexType>
+   			<xsd:sequence>
+   				<xsd:element name="campaign" type="ptr:CampaignType" maxOccurs="1" minOccurs="0"></xsd:element>
+    			<xsd:element name="date" type="ptr:dateString" maxOccurs="1" minOccurs="0"></xsd:element>
+    			<xsd:element name="colourArticle" type="ptr:MCCType" maxOccurs="1" minOccurs="0"></xsd:element>
+    			<xsd:element name="locationId" type="ptr:LocationType" maxOccurs="1" minOccurs="0"></xsd:element>
+   				<xsd:element name="sizeThreshold" type="sizeThresholdType" maxOccurs="1" minOccurs="0"></xsd:element>
+   			</xsd:sequence>
+   		</xsd:complexType>
+   	</xsd:element>
+   	
+    <xsd:element name="sDDStocksRFIDComercialResponse">
+   		<xsd:complexType>
+   			<xsd:sequence>
+   				<xsd:element name="campaign" type="ptr:CampaignType" maxOccurs="1" minOccurs="0"></xsd:element>
+    			<xsd:element name="date" type="ptr:dateString" maxOccurs="1" minOccurs="0"></xsd:element>
+    			<xsd:element name="locationId" type="ptr:LocationType" maxOccurs="1" minOccurs="0"></xsd:element>
+   				<xsd:element name="rfidStock" type="xsd:int" maxOccurs="1" minOccurs="0"></xsd:element>
+    			<xsd:element name="admStock" type="xsd:int" maxOccurs="1" minOccurs="0"></xsd:element>
+    			<xsd:element name="consignStock" type="xsd:int" maxOccurs="1" minOccurs="0"></xsd:element>
+    			<xsd:element name="activeStock" type="xsd:int" maxOccurs="1" minOccurs="0"></xsd:element>
+    			<xsd:element name="passiveStock" type="xsd:int" maxOccurs="1" minOccurs="0"></xsd:element>
+   				</xsd:sequence>
+   		</xsd:complexType>
+   	</xsd:element>
+   	
+   	<xsd:element name="sDDStocksRFIDComercialMcctResponse">
+   		<xsd:complexType>
+   			<xsd:sequence>
+   				<xsd:element name="campaign" type="ptr:CampaignType" maxOccurs="1" minOccurs="0"></xsd:element>
+    			<xsd:element name="date" type="ptr:dateString" maxOccurs="1" minOccurs="0"></xsd:element>
+    			<xsd:element name="colourArticleSize" type="ptr:MCCTType" maxOccurs="1" minOccurs="0"></xsd:element>
+    			<xsd:element name="locationId" type="ptr:LocationType" maxOccurs="1" minOccurs="0"></xsd:element>
+   				<xsd:element name="rfidStock" type="xsd:int" maxOccurs="1" minOccurs="0"></xsd:element>
+    			<xsd:element name="admStock" type="xsd:int" maxOccurs="1" minOccurs="0"></xsd:element>
+    			<xsd:element name="consignStock" type="xsd:int" maxOccurs="1" minOccurs="0"></xsd:element>
+    			<xsd:element name="activeStock" type="xsd:int" maxOccurs="1" minOccurs="0"></xsd:element>
+    			<xsd:element name="passiveStock" type="xsd:int" maxOccurs="1" minOccurs="0"></xsd:element>
+   			</xsd:sequence>
+   		</xsd:complexType>
+   	</xsd:element>
+   	
+   	<xsd:element name="sDDStocksRFIDComercialMcctFechaResponse">
+   		<xsd:complexType>
+   			<xsd:sequence>
+   				<xsd:element name="campaign" type="ptr:CampaignType" maxOccurs="1" minOccurs="0"></xsd:element>
+    			<xsd:element name="date" type="ptr:dateString" maxOccurs="1" minOccurs="0"></xsd:element>
+    			<xsd:element name="colourArticleSize" type="ptr:MCCTType" maxOccurs="1" minOccurs="0"></xsd:element>
+   				<xsd:element name="rfidStock" type="xsd:int" maxOccurs="1" minOccurs="0"></xsd:element>
+    			<xsd:element name="admStock" type="xsd:int" maxOccurs="1" minOccurs="0"></xsd:element>
+    			<xsd:element name="consignStock" type="xsd:int" maxOccurs="1" minOccurs="0"></xsd:element>
+    			<xsd:element name="activeStock" type="xsd:int" maxOccurs="1" minOccurs="0"></xsd:element>
+    			<xsd:element name="passiveStock" type="xsd:int" maxOccurs="1" minOccurs="0"></xsd:element>
+   			</xsd:sequence>
+   		</xsd:complexType>
+   	</xsd:element>
+    
+   	<xsd:element name="sDDGeneralRequest">
+   		<xsd:complexType>
+   			<xsd:sequence>
+   				<xsd:element name="brand" type="ptr:BrandType" maxOccurs="1" minOccurs="1"></xsd:element>
+   				<xsd:element name="product" type="ptr:ProductType" maxOccurs="1" minOccurs="1"></xsd:element>
+   				<xsd:element name="campaignList" type="CampaignListType" maxOccurs="1" minOccurs="1"></xsd:element>
+   				<xsd:element name="section" type="ptr:SectionType" maxOccurs="1" minOccurs="1"></xsd:element>
+   				<xsd:element name="seasonList" type="seasonListType" maxOccurs="1" minOccurs="1"></xsd:element>
+   				<xsd:element name="locationList" type="locationListType" maxOccurs="1" minOccurs="1"></xsd:element>
+   				<xsd:element name="rangoFecha" type="rangoFecha_type" maxOccurs="unbounded" minOccurs="1"></xsd:element>
+   				<xsd:element name="colourArticleList" type="colourArticleListType" maxOccurs="1" minOccurs="1"></xsd:element>
+   			</xsd:sequence>
+   		</xsd:complexType>
+   	</xsd:element>
+   	
+   	<xsd:element name="sDDGeneralUmbralTallajeRequest">
+   		<xsd:complexType>
+   			<xsd:sequence>
+   				<xsd:element name="brand" type="ptr:BrandType" maxOccurs="1" minOccurs="1"></xsd:element>
+   				<xsd:element name="product" type="ptr:ProductType" maxOccurs="1" minOccurs="1"></xsd:element>
+   				<xsd:element name="campaignList" type="CampaignListType" maxOccurs="1" minOccurs="1"></xsd:element>
+   				<xsd:element name="section" type="ptr:SectionType" maxOccurs="1" minOccurs="1"></xsd:element>
+   				<xsd:element name="seasonList" type="seasonListType" maxOccurs="1" minOccurs="1"></xsd:element>
+   				<xsd:element name="locationList" type="locationListType" maxOccurs="1" minOccurs="1"></xsd:element>
+   				<xsd:element name="rangoFecha" type="rangoFecha_type" maxOccurs="unbounded" minOccurs="1"></xsd:element>
+   				<xsd:element name="colourArticleList" type="colourArticleListType" maxOccurs="1" minOccurs="1"></xsd:element>
+   				<xsd:element name="umbralTallaje" type="sizeThresholdType" maxOccurs="1" minOccurs="1"></xsd:element>
+   			</xsd:sequence>
+   		</xsd:complexType>
+   	</xsd:element>
+   	
+   	<xsd:element name="sDDGeneralUmbralStockRequest">
+   		<xsd:complexType>
+   			<xsd:sequence>
+   				<xsd:element name="brand" type="ptr:BrandType" maxOccurs="1" minOccurs="1"></xsd:element>
+   				<xsd:element name="product" type="ptr:ProductType" maxOccurs="1" minOccurs="1"></xsd:element>
+   				<xsd:element name="campaignList" type="CampaignListType" maxOccurs="1" minOccurs="1"></xsd:element>
+   				<xsd:element name="section" type="ptr:SectionType" maxOccurs="1" minOccurs="1"></xsd:element>
+   				<xsd:element name="seasonList" type="seasonListType" maxOccurs="1" minOccurs="1"></xsd:element>
+   				<xsd:element name="locationList" type="locationListType" maxOccurs="1" minOccurs="1"></xsd:element>
+   				<xsd:element name="rangoFecha" type="rangoFecha_type" maxOccurs="unbounded" minOccurs="1"></xsd:element>
+   				<xsd:element name="colourArticleList" type="colourArticleListType" maxOccurs="1" minOccurs="1"></xsd:element>
+   				<xsd:element name="umbralStock" type="sizeThresholdType" maxOccurs="1" minOccurs="1"></xsd:element>
+   			</xsd:sequence>
+   		</xsd:complexType>
+   	</xsd:element>
+   	
+   	<xsd:element name="sDDGeneralUmbralRequest">
+   		<xsd:complexType>
+   			<xsd:sequence>
+   				<xsd:element name="brand" type="ptr:BrandType" maxOccurs="1" minOccurs="1"></xsd:element>
+   				<xsd:element name="product" type="ptr:ProductType" maxOccurs="1" minOccurs="1"></xsd:element>
+   				<xsd:element name="campaignList" type="CampaignListType" maxOccurs="1" minOccurs="1"></xsd:element>
+   				<xsd:element name="section" type="ptr:SectionType" maxOccurs="1" minOccurs="1"></xsd:element>
+   				<xsd:element name="seasonList" type="seasonListType" maxOccurs="1" minOccurs="1"></xsd:element>
+   				<xsd:element name="locationList" type="locationListType" maxOccurs="1" minOccurs="1"></xsd:element>
+   				<xsd:element name="rangoFecha" type="rangoFecha_type" maxOccurs="unbounded" minOccurs="1"></xsd:element>
+   				<xsd:element name="colourArticleList" type="colourArticleListType" maxOccurs="1" minOccurs="1"></xsd:element>
+   				<xsd:element name="umbral" type="sizeThresholdType" maxOccurs="1" minOccurs="1"></xsd:element>
+   			</xsd:sequence>
+   		</xsd:complexType>
+   	</xsd:element>
+   	
+   	
+   	
+   	
+    
 </xsd:schema>
